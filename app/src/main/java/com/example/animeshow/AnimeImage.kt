@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -50,7 +51,7 @@ fun AnimeImage(photoResId: Int, navController: NavController) {
             )
         }
         Text(
-            text = "التقييم: ★ $rating",
+            text = stringResource(R.string.anime_rating, rating),
             color = Color.White,
             fontSize = 14.sp,
             modifier = Modifier.padding(top = 4.dp)
