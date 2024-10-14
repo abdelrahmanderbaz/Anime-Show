@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 fun MainApp() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "main") {
-        composable("main") { MyColumn(navController) }
+        composable("main") { MyPhotos(navController) }
         composable("detail/{photoId}") { backStackEntry ->
             val photoId = backStackEntry.arguments?.getString("photoId")?.toInt() ?: 0
             DetailScreen(photoId)
