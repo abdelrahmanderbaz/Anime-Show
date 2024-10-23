@@ -2,6 +2,7 @@ package com.example.animeshow
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
@@ -45,4 +46,6 @@ fun TopBar() {
             containerColor =  Color(0xFF001F3F)
         )
     )
+
 }
+

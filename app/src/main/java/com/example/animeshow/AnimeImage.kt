@@ -22,11 +22,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun AnimeImage(photoResId: Int, navController: NavController) {
-    val index = AnimePhotos.indexOf(photoResId) // الحصول على الفهرس
-    val rating = AnimeRating.getOrNull(index) ?: 0 // التقييم بناءً على الفهرس
-    val status = Anime_Status.getOrNull(index) ?: "غير معروف" // الحالة بناءً على الفهرس
-
+fun AnimeImage(anime: AnimeData, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -38,29 +34,24 @@ fun AnimeImage(photoResId: Int, navController: NavController) {
                 .fillMaxWidth()
                 .aspectRatio(0.5f)
                 .clickable {
-                    navController.navigate("detail/$photoResId")
+                    navController.navigate("detail/${anime.id}")
                 },
             shape = RoundedCornerShape(8.dp),
         ) {
-            val painter = rememberAsyncImagePainter(model = photoResId)
+            val painter = rememberAsyncImagePainter(model = anime.attributes.posterImage.original)
             Image(
                 painter = painter,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
+
         }
         Text(
-            text = stringResource(R.string.anime_rating, rating),
+            text = "Status: ${anime.attributes.status}",
             color = Color.White,
             fontSize = 14.sp,
             modifier = Modifier.padding(top = 4.dp)
-        )
-        Text(
-            text = "الحالة: $status",
-            color = Color.White,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(bottom = 4.dp)
         )
     }
 }
