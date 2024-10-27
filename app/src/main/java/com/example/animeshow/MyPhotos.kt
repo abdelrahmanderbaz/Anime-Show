@@ -20,12 +20,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 
 @Composable
 fun MyPhotos(navController: NavController) {
+    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     var animeList by remember { mutableStateOf<List<AnimeData>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -35,8 +37,10 @@ fun MyPhotos(navController: NavController) {
             try {
                 val response = RetrofitInstance.api.getAnimeList()
                 animeList = response.data
+                DatabaseInstance.getDatabase(context).animeDao().insertAll(response.data)
             } catch (e: Exception) {
-                // Handle Error
+
+                animeList = DatabaseInstance.getDatabase(context).animeDao().getAllAnimes()
             } finally {
                 isLoading = false
             }

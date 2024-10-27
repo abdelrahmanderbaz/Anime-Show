@@ -43,4 +43,5 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="anime_rating">Rating %1$s *</string>
+    <string name="anime_name">Anime Name: %1$s</string>
 </resources>

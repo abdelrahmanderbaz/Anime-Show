@@ -2,4 +2,5 @@
 <resources>
 
     <string name="anime_rating">التقييم: ★ %1$s</string>
+    <string name="anime_name">إسم الأنيمي: %1$s</string>
 </resources>

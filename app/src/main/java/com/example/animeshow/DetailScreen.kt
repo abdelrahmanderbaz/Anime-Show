@@ -31,7 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -42,17 +44,14 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun DetailScreen(animeId: String) {
+    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     var anime by remember { mutableStateOf<AnimeData?>(null) }
 
     // Fetch detailed data based on anime ID
     LaunchedEffect(animeId) {
         coroutineScope.launch {
-            try {
-                anime = RetrofitInstance.api.getAnimeList().data.firstOrNull { it.id == animeId }
-            } catch (e: Exception) {
-                // Handle error
-            }
+            anime = DatabaseInstance.getDatabase(context).animeDao().getAnimeById(animeId)
         }
     }
 

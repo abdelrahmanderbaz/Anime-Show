@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -78,9 +79,13 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
     implementation("io.coil-kt:coil-compose:2.1.0")
     implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("io.coil-kt:coil-compose:2.2.2")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation(libs.androidx.room.ktx)
+    implementation (libs.androidx.room.room.runtime)
+    kapt(libs.androidx.room.compiler)
 }

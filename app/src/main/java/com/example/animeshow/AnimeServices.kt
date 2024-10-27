@@ -1,6 +1,8 @@
 package com.example.animeshow
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -9,8 +11,9 @@ data class AnimeResponse(
     val data: List<AnimeData>
 )
 
+@Entity(tableName = "anime_table")
 data class AnimeData(
-    val id: String,
+    @PrimaryKey val id: String,
     val attributes: Attributes
 )
 
